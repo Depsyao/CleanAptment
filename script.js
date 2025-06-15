@@ -71,8 +71,14 @@ function renderTasks() {
 
 // Funzione per eliminare un task
 function deleteTask(room, taskDescription) {
+  // Verifica se la stanza e il compito sono corretti
+  console.log(`Eliminando il compito: ${taskDescription} nella stanza: ${room}`);
+
+  // Rimuoviamo il compito dall'array 'tasks' per il giorno corrente
   tasks[currentDay] = tasks[currentDay].filter(task => !(task.room === room && task.task === taskDescription));
-  renderTasks(); // Rende i compiti dopo la cancellazione
+
+  // Rende i compiti per il giorno selezionato (includendo la modifica)
+  renderTasks();
 }
 
 // Funzione per aggiungere nuovi compiti
@@ -98,3 +104,4 @@ document.getElementById("add-task-form").addEventListener("submit", addTask);
 
 // Renderizza i compiti per il giorno predefinito (Lunedì)
 renderTasks();
+
