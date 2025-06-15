@@ -27,8 +27,8 @@ let currentDay = "Lunedì"; // Giorno di default
 
 // Funzione per cambiare il giorno e aggiornare i compiti
 function changeDay(day) {
-  currentDay = day; // Cambia il giorno selezionato
-  document.getElementById("selected-day").innerText = day; // Aggiorna il titolo
+  currentDay = day;
+  document.getElementById("selected-day").innerText = day;
   renderTasks(); // Rende i compiti per il giorno selezionato
 }
 
@@ -79,10 +79,7 @@ function renderTasks() {
 
 // Funzione per eliminare un task
 function deleteTask(room, taskDescription) {
-  // Rimuoviamo il compito dall'array 'tasks' per il giorno corrente
   tasks[currentDay] = tasks[currentDay].filter(task => !(task.room === room && task.task === taskDescription));
-
-  // Rende i compiti per il giorno selezionato (includendo la modifica)
   renderTasks();
 }
 
@@ -98,21 +95,10 @@ function addTask(event) {
   const existingTask = tasks[currentDay].find(task => task.room === room && task.task === taskDesc);
 
   if (!existingTask) {
-    // Aggiungiamo il nuovo compito al giorno corrente
     tasks[currentDay].push({ room, task: taskDesc, frequency });
   } else {
     alert("Questo compito è già presente per questa stanza!");
   }
 
-  // Rende i compiti per il giorno selezionato (includendo il nuovo compito)
   renderTasks();
-
-  // Resetta il modulo dopo l'aggiunta
-  document.getElementById("add-task-form").reset();
-}
-
-// Aggiungiamo l'evento per il submit del modulo
-document.getElementById("add-task-form").addEventListener("submit", addTask);
-
-// Renderizza i compiti per il giorno predefinito (Lunedì)
-renderTasks();
+  document.getElement
