@@ -36,3 +36,30 @@
         <option value="Cucina">Cucina</option>
         <option value="Soggiorno">Soggiorno</option>
         <option value="Camer
+<!-- Sezione per aggiungere nuovi compiti -->
+<section id="add-task-section">
+  <h3>Aggiungi nuovo compito</h3>
+  <form id="add-task-form">
+    <label for="room-select">Scegli la stanza:</label>
+    <select id="room-select">
+      <option value="Bagno">Bagno</option>
+      <option value="Cucina">Cucina</option>
+      <option value="Soggiorno">Soggiorno</option>
+      <option value="Camera da letto">Camera da letto</option>
+      <option value="Corridoio">Corridoio</option>
+      <option value="Stanzetta">Stanzetta</option>
+    </select>
+
+    <label for="task-desc">Descrizione compito:</label>
+    <input type="text" id="task-desc" placeholder="Es. Pulire il pavimento" required>
+
+    <label for="task-frequency">Frequenza:</label>
+    <select id="task-frequency">
+      <option value="Una volta al giorno">Una volta al giorno</option>
+      <option value="Una volta a settimana">Una volta a settimana</option>
+      <option value="Una volta al mese">Una volta al mese</option>
+    </select>
+
+    <button type="submit">Aggiungi compito</button>
+  </form>
+</section>
