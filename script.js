@@ -76,4 +76,3 @@ function uploadPhoto() {
 
 // Renderizza i compiti per il giorno predefinito (Lunedì)
 renderTasks();
-
