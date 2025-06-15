@@ -6,23 +6,27 @@ const tasks = {
   "Martedì": {
     "Camera da letto": ["Rifare letto", "Ordinare armadio"],
     "Corridoio": ["Spazzare pavimento", "Pulire luci"]
-  }
+  },
+  "Mercoledì": {
+    "Soggiorno": ["Spolverare mobili", "Aspirare pavimento"],
+    "Cucina": ["Pulire frigorifero", "Svuotare pattumiera"]
+  },
   // Aggiungi altri giorni e compiti qui
 };
 
-let currentDay = "Lunedì";
+let currentDay = "Lunedì"; // Giorno di default
 
 function changeDay(day) {
-  currentDay = day;
-  document.getElementById("selected-day").innerText = day;
-  renderTasks();
+  currentDay = day; // Cambia il giorno selezionato
+  document.getElementById("selected-day").innerText = day; // Aggiorna il titolo con il giorno selezionato
+  renderTasks(); // Rende di nuovo i compiti per il giorno selezionato
 }
 
 function renderTasks() {
   const container = document.getElementById("room-list");
-  container.innerHTML = "";
+  container.innerHTML = ""; // Pulisce la lista dei compiti esistenti
 
-  const rooms = tasks[currentDay];
+  const rooms = tasks[currentDay]; // Ottiene i compiti per il giorno selezionato
   for (const room in rooms) {
     const div = document.createElement("div");
     div.className = "room";
@@ -63,4 +67,5 @@ function uploadPhoto() {
   reader.readAsDataURL(file);
 }
 
+// Renderizza i compiti per il giorno predefinito al caricamento della pagina
 renderTasks();
