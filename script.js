@@ -68,5 +68,26 @@ function uploadPhoto() {
   reader.readAsDataURL(file);
 }
 
+// Funzione per aggiungere nuovi compiti
+function addTask(event) {
+  event.preventDefault(); // Evita il ricaricamento della pagina
+
+  const room = document.getElementById("room-select").value;
+  const taskDesc = document.getElementById("task-desc").value;
+  const frequency = document.getElementById("task-frequency").value;
+
+  // Aggiungiamo il nuovo compito al giorno corrente
+  tasks[currentDay].push({ room, task: taskDesc, frequency });
+
+  // Rende i compiti per il giorno selezionato (includendo il nuovo compito)
+  renderTasks();
+
+  // Resetta il modulo dopo l'aggiunta
+  document.getElementById("add-task-form").reset();
+}
+
+// Aggiungiamo l'evento per il submit del modulo
+document.getElementById("add-task-form").addEventListener("submit", addTask);
+
 // Renderizza i compiti per il giorno predefinito (Lunedì)
 renderTasks();
