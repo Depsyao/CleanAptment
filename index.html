@@ -9,6 +9,7 @@
 <body>
   <h1>CleanAptment</h1>
 
+  <!-- Menu dei giorni della settimana -->
   <nav id="days">
     <button onclick="changeDay('Lunedì')">Lunedì</button>
     <button onclick="changeDay('Martedì')">Martedì</button>
@@ -25,13 +26,13 @@
     <!-- I compiti giornalieri verranno generati da JS -->
   </div>
 
-  <section id="scanner-section">
-    <h3>Scannerizza una stanza</h3>
-    <input type="file" id="room-photo" accept="image/*" />
-    <button onclick="uploadPhoto()">Carica Foto della stanza</button>
-    <div id="planimetria-preview"></div>
-  </section>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <!-- Sezione per aggiungere nuovi compiti -->
+  <section id="add-task-section">
+    <h3>Aggiungi nuovo compito</h3>
+    <form id="add-task-form">
+      <label for="room-select">Scegli la stanza:</label>
+      <select id="room-select">
+        <option value="Bagno">Bagno</option>
+        <option value="Cucina">Cucina</option>
+        <option value="Soggiorno">Soggiorno</option>
+        <option value="Camer
