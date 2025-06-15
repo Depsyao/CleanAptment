@@ -68,6 +68,11 @@ function renderTasks() {
       });
 
       container.appendChild(div);
+    } else {
+      const div = document.createElement("div");
+      div.className = "room";
+      div.innerHTML = `<h3>${room}</h3><p>Non ci sono compiti per oggi.</p>`;
+      container.appendChild(div);
     }
   });
 }
