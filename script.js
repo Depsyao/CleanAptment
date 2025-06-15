@@ -36,16 +36,15 @@ function renderTasks() {
 
   // Per ogni stanza, se non c'è un compito specifico, mettiamo un placeholder
   allRooms.forEach(room => {
-    let taskFound = false;
+    let roomTasks = tasks[currentDay].filter(task => task.room === room);
+    if (roomTasks.length > 0) {
+      const div = document.createElement("div");
+      div.className = "room";
+      div.innerHTML = `<h3>${room}</h3>`;
 
-    // Controlla se c'è un compito per la stanza nel giorno selezionato
-    tasks[currentDay].forEach(task => {
-      if (task.room === room) {
-        taskFound = true;
-        const div = document.createElement("div");
-        div.className = "room";
-        div.innerHTML = `<h3>${task.room}</h3>`;
-        
+      roomTasks.forEach(task => {
+        const p = document.createElement("p");
+
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.id = `${task.room}-${task.task}`;
@@ -54,48 +53,48 @@ function renderTasks() {
         label.htmlFor = checkbox.id;
         label.innerText = `${task.task} - ${task.frequency}`;
 
-        const p = document.createElement("p");
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Elimina";
+        deleteButton.onclick = () => deleteTask(room, task.task); // Passiamo la stanza e il task da eliminare
+
         p.appendChild(checkbox);
         p.appendChild(label);
+        p.appendChild(deleteButton);
 
         div.appendChild(p);
-        container.appendChild(div);
-      }
-    });
+      });
 
-    // Se non c'è nessun compito, inseriamo un task vuoto per la stanza
-    if (!taskFound) {
-      const div = document.createElement("div");
-      div.className = "room";
-      div.innerHTML = `<h3>${room}</h3>`;
-      
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.disabled = true; // Non sarà cliccabile
-
-      const label = document.createElement("label");
-      label.htmlFor = checkbox.id;
-      label.innerText = "Nessun compito definito";
-
-      const p = document.createElement("p");
-      p.appendChild(checkbox);
-      p.appendChild(label);
-
-      div.appendChild(p);
       container.appendChild(div);
     }
   });
 }
 
-// Funzione per caricare foto
-function uploadPhoto() {
-  const file = document.getElementById("room-photo").files[0];
-  if (!file) return;
+// Funzione per eliminare un task
+function deleteTask(room, taskDescription) {
+  tasks[currentDay] = tasks[currentDay].filter(task => !(task.room === room && task.task === taskDescription));
+  renderTasks(); // Rende i compiti dopo la cancellazione
+}
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const img = document.createElement("img");
-    img.src = e.target.result;
+// Funzione per aggiungere nuovi compiti
+function addTask(event) {
+  event.preventDefault(); // Evita il ricaricamento della pagina
 
-    document.getElementById("planimetria-preview").appendChild(img);
-    alert("Foto caricata. La funzione di mapp
+  const room = document.getElementById("room-select").value;
+  const taskDesc = document.getElementById("task-desc").value;
+  const frequency = document.getElementById("task-frequency").value;
+
+  // Aggiungiamo il nuovo compito al giorno corrente, raggruppandolo sotto la stanza giusta
+  tasks[currentDay].push({ room, task: taskDesc, frequency });
+
+  // Rende i compiti per il giorno selezionato (includendo il nuovo compito)
+  renderTasks();
+
+  // Resetta il modulo dopo l'aggiunta
+  document.getElementById("add-task-form").reset();
+}
+
+// Aggiungiamo l'evento per il submit del modulo
+document.getElementById("add-task-form").addEventListener("submit", addTask);
+
+// Renderizza i compiti per il giorno predefinito (Lunedì)
+renderTasks();
