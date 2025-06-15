@@ -17,7 +17,10 @@ const tasks = {
     { room: "Soggiorno", task: "Spolverare mobili", frequency: "Una volta a settimana" },
     { room: "Cucina", task: "Pulire frigorifero", frequency: "Una volta al mese" }
   ],
-  // Aggiungi gli altri giorni della settimana con stanze vuote...
+  "Giovedì": [],
+  "Venerdì": [],
+  "Sabato": [],
+  "Domenica": []
 };
 
 let currentDay = "Lunedì"; // Giorno di default
@@ -71,9 +74,6 @@ function renderTasks() {
 
 // Funzione per eliminare un task
 function deleteTask(room, taskDescription) {
-  // Verifica se la stanza e il compito sono corretti
-  console.log(`Eliminando il compito: ${taskDescription} nella stanza: ${room}`);
-
   // Rimuoviamo il compito dall'array 'tasks' per il giorno corrente
   tasks[currentDay] = tasks[currentDay].filter(task => !(task.room === room && task.task === taskDescription));
 
@@ -89,8 +89,15 @@ function addTask(event) {
   const taskDesc = document.getElementById("task-desc").value;
   const frequency = document.getElementById("task-frequency").value;
 
-  // Aggiungiamo il nuovo compito al giorno corrente, raggruppandolo sotto la stanza giusta
-  tasks[currentDay].push({ room, task: taskDesc, frequency });
+  // Verifica se il compito per quella stanza è già presente
+  const existingTask = tasks[currentDay].find(task => task.room === room && task.task === taskDesc);
+
+  if (!existingTask) {
+    // Aggiungiamo il nuovo compito al giorno corrente
+    tasks[currentDay].push({ room, task: taskDesc, frequency });
+  } else {
+    alert("Questo compito è già presente per questa stanza!");
+  }
 
   // Rende i compiti per il giorno selezionato (includendo il nuovo compito)
   renderTasks();
@@ -104,4 +111,3 @@ document.getElementById("add-task-form").addEventListener("submit", addTask);
 
 // Renderizza i compiti per il giorno predefinito (Lunedì)
 renderTasks();
-
