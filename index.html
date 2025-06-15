@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CleanAptment</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>CleanAptment</h1>
+
+  <nav id="days">
+    <button onclick="changeDay('Lunedì')">Lunedì</button>
+    <button onclick="changeDay('Martedì')">Martedì</button>
+    <button onclick="changeDay('Mercoledì')">Mercoledì</button>
+    <button onclick="changeDay('Giovedì')">Giovedì</button>
+    <button onclick="changeDay('Venerdì')">Venerdì</button>
+    <button onclick="changeDay('Sabato')">Sabato</button>
+    <button onclick="changeDay('Domenica')">Domenica</button>
+  </nav>
+
+  <h2 id="selected-day">Lunedì</h2>
+
+  <div id="room-list">
+    <!-- Stanze e compiti vengono generati da JS -->
+  </div>
+
+  <section id="upload-section">
+    <h3>Scannerizza una stanza</h3>
