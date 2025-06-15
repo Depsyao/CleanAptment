@@ -11,6 +11,14 @@ h1, h2 {
 #days button {
   margin: 5px;
   padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#days button:hover {
+  background-color: #45a049;
 }
 
 .room {
@@ -20,11 +28,15 @@ h1, h2 {
   border-radius: 5px;
 }
 
-#upload-section {
+#scanner-section {
   margin-top: 30px;
 }
 
 #planimetria-preview img {
   max-width: 100%;
   margin-top: 10px;
+}
+
+#room-list label {
+  margin-left: 10px;
 }
